@@ -6,3 +6,4 @@ python-dotenv
 google-genai
 fpdf2
 python-docx
+reportlab
