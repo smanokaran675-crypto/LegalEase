@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LegalEase</title>
+
+    <link rel="stylesheet"
+          href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>⚖️ LegalEase</h1>
+
+        <p>
+            AI-Powered Legal Document Generator
+        </p>
+
+    </div>
+
+
+    <form action="/generate"
+          method="post"
+          class="form-card">
+
+        <label>Document Type</label>
+
+        <select name="document_type" required>
+
+            <option value="">Select document type</option>
+
+            <option value="Employment Contract">
+                Employment Contract
+            </option>
+
+            <option value="Lease Agreement">
+                Lease Agreement
+            </option>
+
+            <option value="Non-Disclosure Agreement (NDA)">
+                Non-Disclosure Agreement (NDA)
+            </option>
+
+            <option value="Business Agreement">
+                Business Agreement
+            </option>
+
+            <option value="Service Agreement">
+                Service Agreement
+            </option>
+
+        </select>
+
+
+        <label>Party / Company Name</label>
+
+        <input
+            type="text"
+            name="party_name"
+            placeholder="Enter person or company name"
+            required
+        >
+
+
+        <label>Additional Details</label>
+
+        <textarea
+            name="details"
+            placeholder="Enter important terms, dates, responsibilities, payment details, etc."
+            required
+        ></textarea>
+
+
+        <button type="submit">
+            Generate Legal Document
+        </button>
+
+    </form>
+
+
+    {% if result %}
+
+    <div class="result-card">
+
+        <h2>Generated Document</h2>
+
+        <pre>{{ result }}</pre>
+
+
+        <div class="download-section">
+
+            <h3>Export Document</h3>
+
+
+            <form action="/download/pdf"
+                  method="post">
+
+                <textarea
+                    name="content"
+                    hidden>{{ result }}</textarea>
+
+                <button type="submit"
+                        class="download-button">
+
+                    📄 Download PDF
+
+                </button>
+
+            </form>
+
+
+            <form action="/download/docx"
+                  method="post">
+
+                <textarea
+                    name="content"
+                    hidden>{{ result }}</textarea>
+
+                <button type="submit"
+                        class="download-button">
+
+                    📝 Download DOCX
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+    <div class="footer">
+
+        <p>
+            LegalEase provides AI-generated document drafts.
+            Please consult a qualified legal professional before
+            using any document for legal purposes.
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
